@@ -1,0 +1,27 @@
+﻿<Page
+    x:Class="TestBehaviors.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TestBehaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:foundation="using:Windows.Foundation"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="Grid1" Background="red" Tapped="UIElement_OnTapped"> 
+        <interactivity:Interaction.Behaviors>
+         
+            <core:DataTriggerBehavior Binding="{Binding GetRect}" ComparisonCondition="Equal" Value="true" >
+                <core:ChangePropertyAction TargetObject="{Binding}" PropertyName="Rect" Value="{x:Bind local:UIEX.GetRect(Grid1), Mode=OneWay}"></core:ChangePropertyAction>
+            </core:DataTriggerBehavior>
+
+            <core:DataTriggerBehavior Binding="{Binding GetRect}" ComparisonCondition="Equal" Value="false" >
+                <core:ChangePropertyAction TargetObject="{Binding}" PropertyName="Rect" Value="0 0 100 100"></core:ChangePropertyAction>
+            </core:DataTriggerBehavior>
+
+        </interactivity:Interaction.Behaviors>
+    </Grid>
+</Page>
